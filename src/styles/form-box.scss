@@ -1,0 +1,11 @@
+.formContainer {
+    background-color: teal;
+    width: 600px;
+    .intro {
+        text-align: center;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+}

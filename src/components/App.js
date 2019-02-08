@@ -1,19 +1,43 @@
 import React, { Component } from 'react';
 import Intro from './Intro';
 import Form from './Form';
+import List from './List';
+import '../styles/form-box.scss';
 
 class App extends Component {
-  state = {
-    inputValue: '',
-   // placeholderData : [{name:'adam', category:'kryminał'}]
-  }
-  
+
+    state = {
+      title: '',
+      bookList: [''],
+      category: '',
+      priority: '',
+      numberOfPages: ''
+    }
+
   handleUserInput = (e) => {
     this.setState({
-      inputValue : e.target.inputValue
+      [e.target.name] : e.target.value,
     })
   }
+
+  handleSubmit = (e) => {
   
+    e.preventDefault();
+    let books = this.state.bookList;
+    books.push({
+      title: this.state.title,
+      category: this.state.category,
+      priority: this.state.priority,
+      numberOfPages: this.state.numberOfPages
+    })
+    this.setState({
+      bookList: books,
+      title: '',
+      category: '',
+      numberOfPages: ''
+    })
+
+  }
   render() {
     return (
       <div className="App">
@@ -22,16 +46,23 @@ class App extends Component {
            appName = {"Booksy"}
            />
           <Form
-           inputValue = {this.state.inputValue}
+           title = {this.state.title}
+           category = {this.state.category}
            handleInputChange = {this.handleUserInput}
-
+           formSubmit = {this.handleSubmit}
+           numberOfPages = {this.state.numberOfPages}
            />
         </div>
-        <div>
-          <ul>
-            {/* {this.state.placeholderData.map((val) => <li>Tytuł:{val.name} Kategoria:{val.category}</li> )} */}
-          </ul>
+        <div className="listContainer">
+          <List 
+          bookList = {this.state.bookList}
+          />
         </div>
+        {/* <div>
+          <ul>
+            {this.state.bookList.map((val,i) => <li key={i}>Tytuł: {val.title} Kategoria: {val.category} Priority: {val.priority} numberOfPages: {val.numberOfPages}</li> )}
+          </ul>
+        </div> */}
       </div>
     );
   }
