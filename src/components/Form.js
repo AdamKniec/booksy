@@ -11,6 +11,7 @@ const Form = (props) => {
             </label>
             <label>Priorytet
                 <select onChange={props.handleInputChange} name='priority'>
+                <option value="select">Click to set</option>
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
                     <option value="high">High</option>

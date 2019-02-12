@@ -1,0 +1,17 @@
+.list {
+    list-style-type: none;
+    padding:0;
+    margin: 0;
+    li {
+        padding: 5px;
+        position: relative;
+        &:hover {
+            background-color: rgb(224, 217, 217);
+        }
+        &:hover:after {
+            content: 'X';
+            position: absolute;
+            right: 1%;
+        }
+    }
+}
