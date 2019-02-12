@@ -26,25 +26,9 @@ class App extends Component {
             this.setState({
               bookList: values
             })
-            // console.log(this.state.bookList)
       });
-      // function gotData(data){
-      //     let bookRecords = data.val();
-      //     console.log(bookRecords);
-      //     var values = Object.values(bookRecords);
-      //     console.log(values);
-      //     console.log(this);
-      // }
-      // gotData = data => {
-      //   let bookRecords = data.val();
-      //      console.log(bookRecords);
-      //      var values = Object.values(bookRecords);
-      //      console.log(values);
-      //      console.log(this);
-      // }
+   
     }
-
-  
 //setting the state
   handleUserInput = (e) => {
     this.setState({
@@ -55,8 +39,6 @@ class App extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     
-                // gdy bedziemy dodawac i zabierac z bazy to zcy to nam bedzie potrzebne ?
-
     // assigning the booklist array which comes from state to the books array
     let books = this.state.bookList;
     //pushing new object to books array
@@ -105,11 +87,6 @@ class App extends Component {
           bookList = {this.state.bookList}
           />
         </div>
-        {/* <div>
-          <ul>
-            {this.state.bookList.map((val,i) => <li key={i}>Tytuł: {val.title} Kategoria: {val.category} Priority: {val.priority} numberOfPages: {val.numberOfPages}</li> )}
-          </ul>
-        </div> */}
       </div>
     );
   }
