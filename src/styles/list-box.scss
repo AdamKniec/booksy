@@ -1,17 +1,29 @@
 .list {
-    list-style-type: none;
-    padding:0;
-    margin: 0;
-    li {
-        padding: 5px;
-        position: relative;
-        &:hover {
-            background-color: rgb(224, 217, 217);
-        }
-        &:hover:after {
-            content: 'X';
-            position: absolute;
-            right: 1%;
-        }
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: #f9fafb;
+  overflow: scroll;
+  height: 500px;
+  li {
+    padding: 10px;
+    position: relative;
+    &:hover {
+      background-color: rgb(224, 217, 217);
+      cursor: pointer;
     }
+
+    .deleteButton {
+      float: right;
+      padding-right: 10px;
+      display: none;
+    }
+  }
+  .completed {
+    text-decoration: line-through;
+    color: teal;
+  }
+  .active {
+    background-color: gray;
+  }
 }

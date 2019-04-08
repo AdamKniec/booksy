@@ -1,0 +1,9 @@
+.notification {
+  padding: 10px;
+  &.success {
+    background-color: green;
+  }
+  &.removed {
+    background-color: red;
+  }
+}
