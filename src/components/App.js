@@ -24,7 +24,6 @@ class App extends Component {
     clickedItem: null,
     activated: false,
     completed: false,
-    //?
     bookAddedNotification: false,
     bookRemovedNotification: false
   };
@@ -40,13 +39,11 @@ class App extends Component {
     e.preventDefault();
     // assigning the booklist array which comes from state to the books array
     let books = this.state.bookList;
-    //pushing new object to books array
     books.push({
       title: this.state.title,
       category: this.state.category,
       priority: this.state.priority,
       numberOfPages: this.state.numberOfPages,
-      // ????
       completed: this.state.completed
     });
 
@@ -60,7 +57,6 @@ class App extends Component {
         category: this.state.category,
         priority: this.state.priority,
         numberOfPages: this.state.numberOfPages,
-        // ?????
         completed: this.state.completed
       });
     // clearing the inputs by setting the state of the particular value to ""
@@ -70,7 +66,7 @@ class App extends Component {
       category: "",
       numberOfPages: ""
     });
-    //calling notification function
+
     this.toggleSuccessNotification();
   };
 
@@ -106,14 +102,20 @@ class App extends Component {
       .database()
       .ref("bookData")
       .on("value", data => {
-        let bookRecords = data.val();
-        let Ids = Object.keys(bookRecords);
-        var values = Object.values(bookRecords);
-
-        this.setState({
-          bookList: values,
-          Ids
-        });
+        console.log(data.val());
+        // DODANY IF //////////////////////
+        if (data.val()) {
+          let bookRecords = data.val();
+          let Ids = Object.keys(bookRecords);
+          var values = Object.values(bookRecords);
+          this.setState({
+            bookList: values,
+            Ids
+          });
+          // DODATNY ELSE I SET STATE /////////////////
+        } else {
+          // ???????
+        }
       });
   }
   // LIST ITEM REMOVAL
@@ -138,7 +140,8 @@ class App extends Component {
     this.setState(prevState => ({
       bookList: prevState.bookList.map((obj, i) =>
         i === clickedItem ? Object.assign(obj, { completed: true }) : obj
-      )
+      ),
+      activated: false
     }));
     //Ponizsze powtorzenie trzeba poprawic
     let IdToBeRemoved = this.state.Ids[clickedItem];
@@ -190,19 +193,19 @@ class App extends Component {
               toggleRemoveNotification={this.toggleRemoveNotification}
             />
           </div>
-          <div className="listContainer">
-            <List
-              bookList={this.state.bookList}
-              IdsList={this.state.Ids}
-              handleListClick={this.handleListClick}
-              clickedItem={this.state.clickedItem}
-              activated={this.state.activated}
-            />
-          </div>
+          <List
+            bookList={this.state.bookList}
+            IdsList={this.state.Ids}
+            handleListClick={this.handleListClick}
+            clickedItem={this.state.clickedItem}
+            activated={this.state.activated}
+            // ???????????????????????????? DODANE ///////
+          />
         </div>
-        <div className="statistics-container">
-          <StatisticsBar />
-        </div>
+        <StatisticsBar
+          numberOfBooks={this.state.bookList.length}
+          bookList={this.state.bookList}
+        />
       </div>
     );
   }

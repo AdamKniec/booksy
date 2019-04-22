@@ -4,7 +4,7 @@ import "../styles/action-box.scss";
 const ActionBox = props => {
   return (
     <div className={props.activated ? "action-box visible" : "action-box"}>
-      <a href="#">
+      <a href="#root">
         <img
           src="../img/checked.svg"
           alt="mark-checked"
@@ -12,7 +12,7 @@ const ActionBox = props => {
           onClick={props.markBookCompleted}
         />
       </a>
-      <a href="#">
+      <a href="#a">
         <img
           src="../img/delete.svg"
           alt="mark-delete"
